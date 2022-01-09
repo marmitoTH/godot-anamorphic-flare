@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/anamorphic_flare/camera_rotation.gd" type="Script" id=1]
+[ext_resource path="res://addons/anamorphic_flare/anamorphic_flare.gd" type="Script" id=2]
+[ext_resource path="res://addons/anamorphic_flare/hansaplatz_2k.exr" type="Texture" id=3]
+
+[sub_resource type="PanoramaSky" id=8]
+panorama = ExtResource( 3 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 8 )
+background_energy = 0.5
+tonemap_mode = 3
+glow_enabled = true
+glow_strength = 0.5
+glow_blend_mode = 1
+glow_bicubic_upscale = true
+
+[node name="AnamorphicFlareExample" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+script = ExtResource( 1 )
+
+[node name="AnamorphicFlare" type="Node" parent="Camera"]
+script = ExtResource( 2 )
+tint = Color( 0.121569, 0.121569, 0.121569, 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
